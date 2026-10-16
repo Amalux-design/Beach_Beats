@@ -1,0 +1,387 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Beach Beats — Where nature meets rhythm</title>
+  <meta name="description" content="Beach Beats is a family of independent brands born by the shore: music, celebrations, fashion, food and community care, and consulting.">
+  <meta name="theme-color" content="#062C43">
+  <link rel="icon" href="assets/logos/beachbeats-mark.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;800;900&family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/base.css">
+  <style>
+    body { --bg: var(--foam); --text: var(--navy); --accent: var(--navy); --dot-ring: var(--navy); }
+    .topbar { color: #fff; }
+    .home-link img.mark { height: 52px; }
+    @media (min-width: 1101px) {
+      .brand-menu ul { background: rgba(6, 44, 67, .88); padding: 6px; border-radius: 99px; }
+    }
+
+    /* ---------- Hero: the coastline mark, drawn big and alive ---------- */
+    .hero {
+      position: relative; overflow: hidden;
+      min-height: min(100svh, 920px);
+      background: var(--navy); color: #fff;
+      display: flex; align-items: flex-end;
+    }
+    .coast { position: absolute; inset: 0; width: 100%; height: 100%; }
+    .hero-copy { position: relative; z-index: 2; padding-block: 140px clamp(48px, 8vh, 88px); }
+    .hero h1 img { width: min(600px, 86vw); height: auto; }
+    .tagline {
+      font-family: var(--display); font-weight: 600;
+      font-size: clamp(1.25rem, 2.4vw, 1.75rem); line-height: 1.2;
+      margin-top: 22px; color: var(--ice);
+    }
+    .now { margin-top: 10px; font-weight: 700; color: var(--shallows); }
+
+    .sun {
+      --beat: 0;
+      position: absolute; z-index: 3;
+      top: clamp(110px, 22%, 220px); right: clamp(24px, 14vw, 240px);
+      width: clamp(104px, 13vw, 168px); aspect-ratio: 1; border-radius: 50%;
+      background: radial-gradient(circle at 35% 30%, #FFE27A, var(--sun) 58%, #F7A600);
+      box-shadow: 0 0 0 10px rgba(255, 194, 14, .22), 0 0 60px 8px rgba(255, 194, 14, .45);
+      display: grid; place-items: center;
+      transform: scale(calc(1 + var(--beat) * .14));
+      transition: transform .08s linear, box-shadow .2s;
+      --focus: #fff;
+    }
+    .sun:hover { box-shadow: 0 0 0 16px rgba(255, 194, 14, .3), 0 0 70px 12px rgba(255, 194, 14, .55); }
+    .sun svg { width: 30%; fill: var(--navy); }
+    .sun .pause { display: none; }
+    .sun[aria-pressed="true"] .play { display: none; }
+    .sun[aria-pressed="true"] .pause { display: block; }
+
+    /* ---------- About ---------- */
+    .about .wrap { display: grid; grid-template-columns: 1fr 1.1fr; gap: clamp(32px, 6vw, 96px); align-items: start; }
+    .about h2 {
+      font-family: var(--display); font-weight: 900; text-transform: uppercase;
+      font-size: clamp(2.5rem, 6vw, 4.75rem); line-height: .92; letter-spacing: -0.01em;
+    }
+    .about .prose { font-size: 1.1875rem; }
+    @media (max-width: 760px) { .about .wrap { grid-template-columns: 1fr; } }
+
+    /* ---------- The family: beach huts ---------- */
+    .family { padding-bottom: 0; background: #fff; }
+    .family .section-head h2, .moments .section-head h2 { font-family: var(--display); font-weight: 800; }
+    .huts {
+      list-style: none;
+      display: grid; grid-template-columns: repeat(5, minmax(200px, 1fr)); gap: 18px;
+      padding-bottom: 28px;
+      overflow-x: auto; scroll-snap-type: x mandatory; scrollbar-width: thin;
+    }
+    .hut { scroll-snap-align: start; display: flex; }
+    .hut a {
+      display: flex; flex-direction: column; width: 100%;
+      text-decoration: none; color: var(--ink);
+      transition: transform .2s cubic-bezier(.3, 1.6, .5, 1);
+    }
+    .hut a:hover, .hut a:focus-visible { transform: translateY(-8px) rotate(-1deg); }
+    .hut .roof { height: 64px; margin-inline: -10px; background: var(--c2); clip-path: polygon(50% 0, 100% 100%, 0 100%); }
+    .hut .walls {
+      flex: 1; padding: 18px 16px 0; display: flex;
+      background: repeating-linear-gradient(90deg, var(--c) 0 16px, color-mix(in srgb, var(--c) 70%, #fff) 16px 32px);
+    }
+    .hut .door {
+      flex: 1; background: #fff; border-radius: 999px 999px 0 0;
+      padding: 30px 16px 22px;
+      display: flex; flex-direction: column; align-items: center; text-align: center; gap: 10px;
+    }
+    .hut .door img { height: 74px; width: auto; max-width: 100%; object-fit: contain; }
+    .hut .rr { height: 74px; display: grid; place-items: center; font-family: var(--display); font-weight: 900; font-size: 2.5rem; color: var(--rr); }
+    .hut strong { font-family: var(--display); font-weight: 800; font-size: 1.1875rem; line-height: 1.15; }
+    .hut .what { font-size: .9375rem; line-height: 1.45; }
+    .boardwalk {
+      height: 34px;
+      background:
+        repeating-linear-gradient(90deg, transparent 0 58px, rgba(70, 40, 10, .35) 58px 60px),
+        linear-gradient(#C98B4E, #A86D36);
+    }
+    @media (max-width: 1100px) { .huts { grid-template-columns: repeat(5, 240px); } }
+
+    /* ---------- Releases ---------- */
+    .tunes { background: var(--navy); color: #fff; }
+    .tunes .section-head h2 { font-family: var(--display); font-weight: 800; }
+    .tunes .section-head a { color: var(--sun); font-weight: 700; }
+
+    /* ---------- Moments ---------- */
+    .moments { background: var(--sand); }
+    .moments .grid {
+      list-style: none;
+      display: grid; grid-template-columns: repeat(4, 1fr); gap: clamp(16px, 3vw, 36px);
+      padding-block: 12px 24px;
+    }
+    .polaroid a {
+      display: block; text-decoration: none; color: var(--ink);
+      background: #fff; padding: 12px 12px 18px;
+      box-shadow: 0 14px 30px -12px rgba(6, 44, 67, .45);
+      transform: rotate(var(--tilt)); transition: transform .25s;
+    }
+    .polaroid a:hover, .polaroid a:focus-visible { transform: rotate(0) scale(1.03); }
+    .polaroid:nth-child(1) { --tilt: -3deg; }
+    .polaroid:nth-child(2) { --tilt: 2deg; margin-top: 40px; }
+    .polaroid:nth-child(3) { --tilt: -1.5deg; }
+    .polaroid:nth-child(4) { --tilt: 3deg; margin-top: 28px; }
+    .polaroid img { aspect-ratio: 4 / 5; width: 100%; object-fit: cover; }
+    .polaroid h3 { font-family: var(--display); font-weight: 800; font-size: 1.125rem; margin-top: 12px; }
+    .polaroid p { font-size: .9375rem; }
+    @media (max-width: 860px) {
+      .moments .grid { grid-template-columns: 1fr 1fr; }
+      .polaroid:nth-child(n) { margin-top: 0; }
+    }
+  </style>
+</head>
+<body>
+  <a class="skip" href="#main">Skip to content</a>
+
+  <header class="topbar">
+    <div class="wrap">
+      <a class="home-link" href="index.html"><img class="mark" src="assets/logos/beachbeats-mark.png" alt="Beach Beats home"></a>
+      <button class="menu-toggle" aria-expanded="false" aria-controls="brand-menu">Our brands</button>
+      <nav id="brand-menu" class="brand-menu" aria-label="Beach Beats brands">
+        <ul>
+          <li><a href="index.html" aria-current="page" style="--dot: var(--home)">Beach Beats</a></li>
+          <li><a href="bbrecords.html" style="--dot: var(--records)">BB Records</a></li>
+          <li><a href="bbsmiles.html" style="--dot: var(--smiles)">BB Smiles</a></li>
+          <li><a href="bbfashion.html" style="--dot: var(--fashion)">BB Fashion</a></li>
+          <li><a href="eacheats.html" style="--dot: var(--eats)">BB Eats</a></li>
+          <li><a href="rrpure.html" style="--dot: var(--rr)">RR Pure</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main">
+    <section class="hero">
+      <canvas class="coast" id="coast" aria-hidden="true"></canvas>
+      <button class="sun" id="sun" aria-pressed="false" aria-label="Play the Beach Beats theme">
+        <svg class="play" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 4.5v15l13-7.5z"/></svg>
+        <svg class="pause" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 4h4.5v16H6zM13.5 4H18v16h-4.5z"/></svg>
+      </button>
+      <div class="wrap hero-copy">
+        <h1><img src="assets/logos/beachbeats-white.png" alt="Beach Beats" width="809" height="264"></h1>
+        <p class="tagline">Where nature meets rhythm.</p>
+        <p class="now" id="now" aria-live="polite">Tap the sun to hear the shore.</p>
+      </div>
+      <audio id="theme" loop preload="none" crossorigin="anonymous"
+        src="https://res.cloudinary.com/dgxb8m8lr/video/upload/v1766828062/video-2025-12-26-17-16-30-n1oj5f_prablt.mp3"></audio>
+    </section>
+
+    <section class="section about">
+      <div class="wrap">
+        <h2>We are<br>Beach Beats</h2>
+        <div class="prose">
+          <p>Beach Beats started by the shore as one creative idea. Today it is a family of independent brands, each with its own sound.</p>
+          <p>We make music, plan celebrations, design clothing, feed and care for our community, and help businesses solve hard problems. Different work, one tide: make something that brings people joy and leaves a real mark.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section family" aria-labelledby="family-title">
+      <div class="wrap">
+        <div class="section-head">
+          <h2 id="family-title">Walk the boardwalk</h2>
+          <p>Every brand has its own hut. Step inside one.</p>
+        </div>
+        <ul class="huts">
+          <li class="hut" style="--c: #FFC20E; --c2: #141210">
+            <a href="bbrecords.html"><span class="roof"></span><span class="walls"><span class="door">
+              <img src="assets/logos/records-mark.png" alt="">
+              <strong>BB Records</strong><span class="what">Music production and sound for every story.</span>
+            </span></span></a>
+          </li>
+          <li class="hut" style="--c: #3AA8E0; --c2: #FFC20E">
+            <a href="bbsmiles.html"><span class="roof"></span><span class="walls"><span class="door">
+              <img src="assets/logos/smiles-mark.png" alt="">
+              <strong>BB Smiles</strong><span class="what">Surprises and celebrations for the people you love.</span>
+            </span></span></a>
+          </li>
+          <li class="hut" style="--c: #12A1A0; --c2: #F7E9CC">
+            <a href="bbfashion.html"><span class="roof"></span><span class="walls"><span class="door">
+              <img src="assets/logos/fashion-mark.png" alt="">
+              <strong>BB Fashion</strong><span class="what">Beachwear and everyday clothing in sea colours.</span>
+            </span></span></a>
+          </li>
+          <li class="hut" style="--c: #F7941D; --c2: #FFC20E">
+            <a href="eacheats.html"><span class="roof"></span><span class="walls"><span class="door">
+              <img src="assets/logos/eats-mark.png" alt="">
+              <strong>BB Eats</strong><span class="what">Good food, shared with our community.</span>
+            </span></span></a>
+          </li>
+          <li class="hut" style="--c: #23395B; --c2: #E8483F">
+            <a href="rrpure.html"><span class="roof"></span><span class="walls"><span class="door">
+              <span class="rr" aria-hidden="true">RR</span>
+              <strong>RR Pure Solutions</strong><span class="what">Strategic consulting and clear-headed problem solving.</span>
+            </span></span></a>
+          </li>
+        </ul>
+      </div>
+      <div class="boardwalk" aria-hidden="true"></div>
+    </section>
+
+    <section class="section tunes" aria-labelledby="tunes-title">
+      <div class="wrap">
+        <div class="section-head">
+          <h2 id="tunes-title">Latest releases</h2>
+          <p>New music from the shore. Hear more at <a href="bbrecords.html">BB Records</a>.</p>
+        </div>
+        <div class="releases">
+          <a class="release" data-yt="JZorUrZcPYQ"><div class="thumb"><img alt="" loading="lazy"><span class="play"><svg viewBox="0 0 24 24"><path d="M5 3v18l15-9z"/></svg></span></div><h3>Watch on YouTube</h3></a>
+          <a class="release" data-yt="_UW1nSXjLqQ"><div class="thumb"><img alt="" loading="lazy"><span class="play"><svg viewBox="0 0 24 24"><path d="M5 3v18l15-9z"/></svg></span></div><h3>Watch on YouTube</h3></a>
+          <a class="release" data-yt="rwa1PJ0e2PQ"><div class="thumb"><img alt="" loading="lazy"><span class="play"><svg viewBox="0 0 24 24"><path d="M5 3v18l15-9z"/></svg></span></div><h3>Watch on YouTube</h3></a>
+          <a class="release" data-yt="FEJdoIMc4xg"><div class="thumb"><img alt="" loading="lazy"><span class="play"><svg viewBox="0 0 24 24"><path d="M5 3v18l15-9z"/></svg></span></div><h3>Watch on YouTube</h3></a>
+          <a class="release" data-yt="g0f0oaTGIfo"><div class="thumb"><img alt="" loading="lazy"><span class="play"><svg viewBox="0 0 24 24"><path d="M5 3v18l15-9z"/></svg></span></div><h3>Watch on YouTube</h3></a>
+          <a class="release" data-yt="LyUiwuta1ws"><div class="thumb"><img alt="" loading="lazy"><span class="play"><svg viewBox="0 0 24 24"><path d="M5 3v18l15-9z"/></svg></span></div><h3>Watch on YouTube</h3></a>
+        </div>
+      </div>
+    </section>
+
+    <section class="section moments" aria-labelledby="moments-title">
+      <div class="wrap">
+        <div class="section-head">
+          <h2 id="moments-title">Moments from the shore</h2>
+          <p>A few things the family has been up to lately.</p>
+        </div>
+        <ul class="grid">
+          <li class="polaroid"><a href="bbsmiles.html">
+            <img src="https://res.cloudinary.com/dgxb8m8lr/image/upload/v1768669044/475918631_18303215179230482_2124248919192203329_n_verjwl.jpg" alt="A birthday cake decorated for an uncle" loading="lazy">
+            <h3>Birthday surprise</h3><p>A 58th birthday nobody saw coming.</p></a></li>
+          <li class="polaroid"><a href="bbsmiles.html">
+            <img src="https://res.cloudinary.com/dgxb8m8lr/image/upload/v1768669155/153952-Jayaram-Sujani-Highlights-111_edited_x2zxbi.jpg" alt="A couple celebrating their wedding anniversary" loading="lazy">
+            <h3>Anniversary</h3><p>A couple, completely surprised.</p></a></li>
+          <li class="polaroid"><a href="eacheats.html">
+            <img src="https://res.cloudinary.com/dgxb8m8lr/image/upload/v1768669701/15400388691_f3d75a830b_b_rbfqg0.jpg" alt="Children sharing a meal" loading="lazy">
+            <h3>250 meals</h3><p>Lunch for 250 children.</p></a></li>
+          <li class="polaroid"><a href="eacheats.html">
+            <img src="https://res.cloudinary.com/dgxb8m8lr/image/upload/v1768669808/little-boy-s-hand-helping-adult-plant-small-tree-garden_104677-52_yq0rcs.avif" alt="A child helping plant a sapling" loading="lazy">
+            <h3>100 trees</h3><p>Planted across the neighbourhood.</p></a></li>
+        </ul>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="wrap">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <img src="assets/logos/beachbeats-white.png" alt="Beach Beats">
+          <p>Music, celebrations, fashion, food and community care, and consulting, all from one shore.</p>
+        </div>
+        <div><h2>Brands</h2><ul>
+          <li><a href="bbrecords.html">BB Records</a></li><li><a href="bbsmiles.html">BB Smiles</a></li>
+          <li><a href="bbfashion.html">BB Fashion</a></li><li><a href="eacheats.html">BB Eats</a></li>
+          <li><a href="rrpure.html">RR Pure Solutions</a></li></ul></div>
+        <div><h2>Follow</h2><ul>
+          <li><a href="https://www.instagram.com/_beach_beats/">Instagram</a></li>
+          <li><a href="https://www.youtube.com/@BEACHBEATSENTERTAINMENTS">YouTube</a></li></ul></div>
+        <div><h2>Talk to us</h2><ul>
+          <li><a href="mailto:beachbeats2025@gmail.com">beachbeats2025@gmail.com</a></li></ul></div>
+      </div>
+      <p class="footer-bottom">© <span data-year>2026</span> Beach Beats. Inspired by the ocean.</p>
+    </div>
+  </footer>
+
+  <script src="assets/js/site.js"></script>
+  <script>
+    // The coastline mark, drawn big: contour bands from the top-right corner.
+    // They drift gently, and ripple with the theme's frequencies when the sun is on.
+    (() => {
+      const canvas = document.getElementById("coast");
+      const g = canvas.getContext("2d");
+      const sun = document.getElementById("sun");
+      const audio = document.getElementById("theme");
+      const now = document.getElementById("now");
+      const { reduce } = window.BB;
+
+      // outermost first, same order as the logo mark
+      const bands = [
+        { k: 1.45, line: "rgba(107,223,255,.14)" },
+        { k: 1.28, line: "rgba(107,223,255,.2)" },
+        { k: 1.12, line: "rgba(107,223,255,.28)" },
+        { k: 1.00, fill: "#6BDFFF" },
+        { k: 0.86, fill: "#FFFFFF" },
+        { k: 0.82, fill: "#5CC6B0" },
+        { k: 0.66, fill: "#C8F0F8" },
+        { k: 0.55, fill: "#48D8F8" },
+      ];
+      let w, h, R, analyser, bins, level = new Float32Array(64);
+
+      const resize = () => {
+        const dpr = Math.min(devicePixelRatio || 1, 2);
+        w = canvas.clientWidth; h = canvas.clientHeight;
+        canvas.width = w * dpr; canvas.height = h * dpr;
+        g.setTransform(dpr, 0, 0, dpr, 0, 0);
+        R = w < 700 ? w * 0.85 : Math.min(w * 0.6, h * 1.0);
+        if (reduce) draw(0);
+      };
+
+      const N = 90;
+      function edge(b, i, t) {
+        const phi = Math.PI - (i / N) * (Math.PI / 2); // from along the top edge round to down the right edge
+        const j = b * 7 + i;
+        const wobble = Math.sin(phi * 6 + t * 0.0005 + b) * R * 0.035 + Math.sin(phi * 13 - t * 0.0008 + b * 2) * R * 0.012;
+        const beat = level[Math.min(63, Math.floor((i / N) * 40) + b * 3)] * R * 0.09;
+        const r = R * bands[b].k + wobble + beat;
+        return [w + Math.cos(phi) * r, Math.sin(phi) * r];
+      }
+
+      function draw(t) {
+        if (analyser && !audio.paused) {
+          analyser.getByteFrequencyData(bins);
+          for (let i = 0; i < 64; i++) level[i] += ((bins[i] / 255) ** 2 - level[i]) * 0.3;
+          let bass = 0; for (let i = 1; i < 8; i++) bass += bins[i];
+          sun.style.setProperty("--beat", Math.max(0, bass / 8 / 255 - 0.45) * 1.8);
+        } else {
+          for (let i = 0; i < 64; i++) level[i] *= 0.92;
+        }
+        g.clearRect(0, 0, w, h);
+        bands.forEach((band, b) => {
+          g.beginPath();
+          if (band.fill) g.moveTo(w, 0);
+          for (let i = 0; i <= N; i++) {
+            const [x, y] = edge(b, i, t);
+            if (i === 0 && !band.fill) g.moveTo(x, y); else g.lineTo(x, y);
+          }
+          if (band.fill) { g.closePath(); g.fillStyle = band.fill; g.fill(); }
+          else { g.strokeStyle = band.line; g.lineWidth = 2; g.stroke(); }
+        });
+      }
+
+      const loop = (t) => { draw(t); requestAnimationFrame(loop); };
+      addEventListener("resize", resize);
+      resize();
+      if (reduce) draw(0); else requestAnimationFrame(loop);
+
+      sun.addEventListener("click", async () => {
+        if (!analyser) {
+          const c = window.BB.ac();
+          analyser = c.createAnalyser();
+          analyser.fftSize = 256;
+          analyser.smoothingTimeConstant = 0.8;
+          bins = new Uint8Array(analyser.frequencyBinCount);
+          c.createMediaElementSource(audio).connect(analyser);
+          analyser.connect(c.destination);
+        }
+        if (audio.paused) {
+          try {
+            await audio.play();
+            sun.setAttribute("aria-pressed", "true");
+            sun.setAttribute("aria-label", "Pause the Beach Beats theme");
+            now.textContent = "Now playing: the Beach Beats theme.";
+          } catch {
+            now.textContent = "The music couldn't load. Check your connection and tap the sun again.";
+          }
+        } else {
+          audio.pause();
+          sun.setAttribute("aria-pressed", "false");
+          sun.setAttribute("aria-label", "Play the Beach Beats theme");
+          sun.style.setProperty("--beat", 0);
+          now.textContent = "Paused. Tap the sun to keep listening.";
+        }
+      });
+    })();
+  </script>
+</body>
+</html>

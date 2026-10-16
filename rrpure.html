@@ -1,0 +1,162 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>RR Pure Solutions — Beach Beats</title>
+  <meta name="description" content="RR Pure Solutions offers strategic consulting and clear-headed problem solving, part of the Beach Beats family.">
+  <meta name="theme-color" content="#E6EEF2">
+  <link rel="icon" href="assets/logos/beachbeats-mark.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800;900&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/base.css">
+  <style>
+    body {
+      --bg: #E6EEF2; --text: #23395B;
+      --accent: #E8483F;
+      --nav-current: #23395B;
+      --focus: #E8483F;
+    }
+    .brand-menu a[aria-current="page"] { color: #E6EEF2; }
+    .wordmark { font-family: var(--display); font-weight: 900; font-size: 2rem; line-height: 1; letter-spacing: -0.01em; color: #23395B; }
+    .wordmark::first-letter { color: #E8483F; }
+
+    .hero { position: relative; overflow: hidden; min-height: min(100svh, 820px); display: flex; align-items: center; background: linear-gradient(#C9D8E2, #E6EEF2 70%); }
+    .hero .wrap { position: relative; z-index: 2; padding-block: 130px 80px; }
+    .hero img.badge { height: 48px; width: auto; margin-bottom: 18px; }
+    .hero h1 {
+      font-family: var(--display); font-weight: 900;
+      font-size: clamp(2.5rem, 6.5vw, 5.25rem); line-height: .95; letter-spacing: -0.02em;
+      max-width: 10ch;
+    }
+    .hero p { font-size: clamp(1.125rem, 2vw, 1.375rem); max-width: 32ch; margin: 22px 0 28px; }
+
+    .lighthouse { position: absolute; right: clamp(-60px, 4vw, 120px); bottom: 0; width: clamp(220px, 32vw, 400px); z-index: 1; }
+    .beam {
+      position: absolute; z-index: 0;
+      right: calc(clamp(-60px, 4vw, 120px) + clamp(220px, 32vw, 400px) * .5);
+      bottom: calc(clamp(220px, 32vw, 400px) * 1.2 * .80);
+      width: 140vw; height: 140vw; translate: 50% 50%;
+      background: conic-gradient(from 0deg, rgba(255, 236, 160, .55) 0 7deg, transparent 12deg 180deg, rgba(255, 236, 160, .35) 180deg 187deg, transparent 192deg);
+      border-radius: 50%;
+      mask-image: radial-gradient(circle, #000 0 30%, transparent 60%);
+      -webkit-mask-image: radial-gradient(circle, #000 0 30%, transparent 60%);
+      animation: sweep 9s linear infinite;
+    }
+    @keyframes sweep { to { rotate: 360deg; } }
+
+    .hero::after {
+      content: ""; position: absolute; left: 0; right: 0; bottom: 0; height: 26px; z-index: 1;
+      background: #5B6E86; clip-path: polygon(0 60%, 30% 40%, 55% 70%, 80% 30%, 100% 50%, 100% 100%, 0 100%);
+    }
+    .how { background: #23395B; color: #E6EEF2; }
+    .how ol { list-style: none; counter-reset: s; display: grid; grid-template-columns: repeat(3, 1fr); gap: 36px; }
+    .how li { counter-increment: s; border-left: 3px solid #E8483F; padding-left: 20px; }
+    .how li::before { content: counter(s); font-family: var(--display); font-weight: 700; font-size: 2.5rem; line-height: 1; color: #E8483F; display: block; margin-bottom: 10px; }
+    .how h3 { font-family: var(--display); font-size: 1.5rem; margin-bottom: 6px; }
+
+    .areas ul { list-style: none; display: grid; grid-template-columns: repeat(3, 1fr); gap: 28px; }
+    .areas h3 { font-family: var(--display); font-size: 1.375rem; margin-bottom: 6px; }
+    .cta-band { text-align: center; padding-top: 0; }
+    .cta-band h2 { font-family: var(--display); font-size: clamp(2rem, 4.5vw, 3rem); margin-bottom: 12px; }
+    .cta-band p { margin: 0 auto 26px; max-width: 42ch; }
+    @media (max-width: 760px) {
+      .how ol, .areas ul { grid-template-columns: 1fr; }
+      .lighthouse { opacity: .35; }
+    }
+    .footer { --deep: #1A2B45; --sun: #E8483F; }
+  </style>
+</head>
+<body>
+  <a class="skip" href="#main">Skip to content</a>
+
+  <header class="topbar">
+    <div class="wrap">
+      <a class="home-link" href="rrpure.html"><span class="wordmark" aria-label="RR Pure Solutions">RR</span></a>
+      <button class="menu-toggle" aria-expanded="false" aria-controls="brand-menu">Our brands</button>
+      <nav id="brand-menu" class="brand-menu" aria-label="Beach Beats brands">
+        <ul>
+          <li><a href="index.html" style="--dot: var(--home)">Beach Beats</a></li>
+          <li><a href="bbrecords.html" style="--dot: var(--records)">BB Records</a></li>
+          <li><a href="bbsmiles.html" style="--dot: var(--smiles)">BB Smiles</a></li>
+          <li><a href="bbfashion.html" style="--dot: var(--fashion)">BB Fashion</a></li>
+          <li><a href="eacheats.html" style="--dot: var(--eats)">BB Eats</a></li>
+          <li><a href="rrpure.html" aria-current="page" style="--dot: var(--rr)">RR Pure</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main">
+    <section class="hero">
+      <div class="beam" aria-hidden="true"></div>
+      <svg class="lighthouse" viewBox="0 0 200 240" aria-hidden="true">
+        <path d="M84 60h32l14 150H70z" fill="#fff"/>
+        <path d="M80 100h40l3 26H77zM74 160h52l3 26H71z" fill="#E8483F"/>
+        <rect x="82" y="36" width="36" height="24" fill="#FFE9A0"/>
+        <path d="M78 36h44l-22-20z" fill="#23395B"/>
+        <rect x="76" y="58" width="48" height="6" fill="#23395B"/>
+        <path d="M0 240c20-40 60-36 90-30s80-8 110 6v24z" fill="#5B6E86"/>
+      </svg>
+      <div class="wrap">
+        <h1>RR Pure Solutions</h1>
+        <p>Strategic consulting for businesses that want a clear way through.</p>
+        <a class="btn" href="mailto:beachbeats2025@gmail.com?subject=RR%20Pure%20Solutions">Book a first conversation</a>
+      </div>
+    </section>
+
+    <section class="section how" aria-labelledby="how-title">
+      <div class="wrap">
+        <div class="section-head"><h2 id="how-title">How we work</h2></div>
+        <ol>
+          <li><h3>Listen</h3><p>We spend time with your team and your numbers before suggesting anything.</p></li>
+          <li><h3>Map</h3><p>We lay out what's really in the way, in plain language.</p></li>
+          <li><h3>Solve</h3><p>We build the plan with you and stay through the first results.</p></li>
+        </ol>
+      </div>
+    </section>
+
+    <section class="section areas" aria-labelledby="areas-title">
+      <div class="wrap">
+        <div class="section-head"><h2 id="areas-title">Where we help</h2></div>
+        <ul>
+          <li><h3>Strategy</h3><p>Where to focus next, and what to stop doing.</p></li>
+          <li><h3>Operations</h3><p>Smoother processes, fewer late nights.</p></li>
+          <li><h3>Growth</h3><p>New markets, new offers and the steps to reach them.</p></li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="section cta-band">
+      <div class="wrap">
+        <h2>Stuck on something?</h2>
+        <p>Tell us about it in a few lines. The first conversation is on us.</p>
+        <a class="btn" href="mailto:beachbeats2025@gmail.com?subject=RR%20Pure%20Solutions">Book a first conversation</a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="wrap">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <img src="assets/logos/beachbeats-white.png" alt="Beach Beats">
+          <p>RR Pure Solutions is part of the Beach Beats family.</p>
+        </div>
+        <div><h2>Brands</h2><ul>
+          <li><a href="index.html">Beach Beats</a></li><li><a href="bbrecords.html">BB Records</a></li>
+          <li><a href="bbsmiles.html">BB Smiles</a></li><li><a href="bbfashion.html">BB Fashion</a></li>
+          <li><a href="eacheats.html">BB Eats</a></li></ul></div>
+        <div><h2>Follow</h2><ul>
+          <li><a href="https://www.instagram.com/_beach_beats/">Instagram</a></li></ul></div>
+        <div><h2>Talk to us</h2><ul>
+          <li><a href="mailto:beachbeats2025@gmail.com">beachbeats2025@gmail.com</a></li></ul></div>
+      </div>
+      <p class="footer-bottom">© <span data-year>2026</span> Beach Beats. Inspired by the ocean.</p>
+    </div>
+  </footer>
+
+  <script src="assets/js/site.js"></script>
+</body>
+</html>

@@ -1,0 +1,210 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>BB Fashion — Beach Beats</title>
+  <meta name="description" content="BB Fashion makes beachwear and everyday clothing in sea colours, from the Beach Beats family.">
+  <meta name="theme-color" content="#12A1A0">
+  <link rel="icon" href="assets/logos/fashion-mark.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/base.css">
+  <style>
+    body {
+      --teal: #12A1A0; --teal-deep: #0B6E6D;
+      --bg: var(--sand); --text: var(--ink);
+      --accent: var(--teal); --on-accent: #fff;
+      --display: "Nunito", system-ui, sans-serif;
+      --nav-current: var(--ink);
+      --dot-ring: #fff;
+      --focus: var(--teal-deep);
+    }
+    .brand-menu a[aria-current="page"] { color: #fff; }
+
+    /* ---------- Hero: the clothesline from the logo ---------- */
+    .hero { position: relative; padding-top: 100px; overflow: hidden; background: #DFF5F4; }
+    .line { position: relative; height: clamp(220px, 28vw, 320px); }
+    .rope { position: absolute; left: 0; top: 18px; width: 100%; height: 70px; }
+    .clothes {
+      position: absolute; inset: 0;
+      display: flex; justify-content: space-around; align-items: flex-start;
+      padding-inline: 3vw;
+    }
+    .item { position: relative; width: clamp(64px, 12vw, 150px); aspect-ratio: 1 / 1.05; margin-top: var(--y); transform-origin: 50% 0; --focus: var(--ink); }
+    .item.brief { aspect-ratio: 1 / .78; }
+    .item .cloth { position: absolute; inset: 0; background: var(--print); transition: background .25s; }
+    .tee .cloth { clip-path: polygon(30% 0, 40% 7%, 60% 7%, 70% 0, 100% 17%, 89% 37%, 79% 31%, 79% 100%, 21% 100%, 21% 31%, 11% 37%, 0 17%); }
+    .brief .cloth { clip-path: polygon(0 0, 100% 0, 100% 26%, 64% 100%, 36% 100%, 0 26%); }
+    .brief .cloth::after { content: ""; position: absolute; inset: 0 0 auto 0; height: 14%; background: rgba(255, 255, 255, .85); }
+    .item .peg { position: absolute; top: -10px; width: 9px; height: 26px; border-radius: 3px; background: #6FE3D6; border: 2px solid var(--ink); z-index: 1; }
+    .item .peg:first-of-type { left: 22%; }
+    .item .peg:last-of-type { right: 22%; }
+    .item.swing { animation: swing .9s cubic-bezier(.3, .6, .4, 1); }
+    @keyframes swing {
+      0% { transform: rotate(0); } 20% { transform: rotate(16deg); } 45% { transform: rotate(-10deg); }
+      70% { transform: rotate(5deg); } 100% { transform: rotate(0); }
+    }
+    .p-teal   { --print: #12A1A0; }
+    .p-stripe { --print: repeating-linear-gradient(#12A1A0 0 12px, #fff 12px 24px); }
+    .p-sun    { --print: radial-gradient(circle at 50% 55%, #FFC20E 0 18%, transparent 19%), #0B6E6D; }
+    .p-wave   { --print: radial-gradient(circle at 50% 0, transparent 9px, #fff 10px) 0 0 / 24px 18px, #12A1A0; }
+    .p-yellow { --print: #FFC20E; }
+    .p-check  { --print: conic-gradient(#141210 25%, #fff 0 50%, #141210 0 75%, #fff 0) 0 0 / 24px 24px; }
+
+    .hero-copy { padding-block: 16px clamp(48px, 8vw, 88px); display: flex; justify-content: space-between; align-items: flex-end; gap: 24px 48px; flex-wrap: wrap; }
+    .hero h1 img { width: min(620px, 100%); height: auto; }
+    .hero-side { max-width: 30ch; }
+    .hero-side p { font-size: 1.25rem; font-weight: 600; margin-bottom: 12px; }
+    .hint { font-size: 1rem !important; color: var(--teal-deep); }
+
+    /* ---------- Drop ---------- */
+    .drop { background: var(--teal); color: #fff; }
+    .drop .wrap { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(32px, 6vw, 80px); align-items: center; }
+    .drop h2 { font-weight: 900; font-size: clamp(2rem, 4.5vw, 3.5rem); line-height: 1.02; }
+    .drop p { font-size: 1.1875rem; margin: 18px 0 28px; max-width: 40ch; }
+    .drop .btn { --accent: var(--sun); --on-accent: var(--ink); }
+    .tag {
+      justify-self: center; position: relative;
+      background: #fff; color: var(--ink);
+      width: min(100%, 340px); padding: 34px 30px 30px;
+      clip-path: polygon(14% 0, 86% 0, 100% 12%, 100% 100%, 0 100%, 0 12%);
+      transform: rotate(4deg);
+    }
+    .tag::before { content: ""; position: absolute; top: 18px; left: 50%; width: 18px; height: 18px; translate: -50% 0; border-radius: 50%; background: var(--teal); }
+    .tag dl { display: grid; grid-template-columns: auto 1fr; gap: 8px 18px; margin-top: 26px; }
+    .tag dt { font-weight: 800; }
+    .tag .big { font-weight: 900; font-size: 1.75rem; line-height: 1; margin-top: 16px; color: var(--teal-deep); }
+    @media (max-width: 760px) { .drop .wrap { grid-template-columns: 1fr; } }
+
+    /* ---------- Colours ---------- */
+    .colours .section-head h2 { font-weight: 900; }
+    .swatches { list-style: none; display: grid; grid-template-columns: repeat(5, 1fr); gap: 14px; }
+    .swatches li { display: grid; gap: 10px; }
+    .swatches span { aspect-ratio: 3 / 4; border-radius: 14px; background: var(--c); border: 2px solid rgba(20, 18, 16, .12); }
+    .swatches strong { font-weight: 800; }
+    @media (max-width: 640px) { .swatches { grid-template-columns: repeat(3, 1fr); } }
+
+    .footer { --deep: var(--ink); --sun: #FFC20E; }
+  </style>
+</head>
+<body>
+  <a class="skip" href="#main">Skip to content</a>
+
+  <header class="topbar">
+    <div class="wrap">
+      <a class="home-link" href="bbfashion.html"><img class="icon" src="assets/logos/fashion-mark.png" alt="BB Fashion"></a>
+      <button class="menu-toggle" aria-expanded="false" aria-controls="brand-menu">Our brands</button>
+      <nav id="brand-menu" class="brand-menu" aria-label="Beach Beats brands">
+        <ul>
+          <li><a href="index.html" style="--dot: var(--home)">Beach Beats</a></li>
+          <li><a href="bbrecords.html" style="--dot: var(--records)">BB Records</a></li>
+          <li><a href="bbsmiles.html" style="--dot: var(--smiles)">BB Smiles</a></li>
+          <li><a href="bbfashion.html" aria-current="page" style="--dot: var(--fashion)">BB Fashion</a></li>
+          <li><a href="eacheats.html" style="--dot: var(--eats)">BB Eats</a></li>
+          <li><a href="rrpure.html" style="--dot: var(--rr)">RR Pure</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main">
+    <section class="hero">
+      <div class="line">
+        <svg class="rope" viewBox="0 0 1000 70" preserveAspectRatio="none" aria-hidden="true">
+          <path d="M0 4 Q500 120 1000 4" fill="none" stroke="#12A1A0" stroke-width="4" vector-effect="non-scaling-stroke"/>
+        </svg>
+        <div class="clothes">
+          <button class="item tee p-stripe"   style="--y: 22px" aria-label="Change the print on this tee"><span class="peg"></span><span class="peg"></span><span class="cloth"></span></button>
+          <button class="item brief p-teal"   style="--y: 40px" aria-label="Change the print on these swim briefs"><span class="peg"></span><span class="peg"></span><span class="cloth"></span></button>
+          <button class="item tee p-sun"      style="--y: 52px" aria-label="Change the print on this tee"><span class="peg"></span><span class="peg"></span><span class="cloth"></span></button>
+          <button class="item brief p-yellow" style="--y: 52px" aria-label="Change the print on these swim briefs"><span class="peg"></span><span class="peg"></span><span class="cloth"></span></button>
+          <button class="item tee p-wave"     style="--y: 40px" aria-label="Change the print on this tee"><span class="peg"></span><span class="peg"></span><span class="cloth"></span></button>
+          <button class="item brief p-check"  style="--y: 22px" aria-label="Change the print on these swim briefs"><span class="peg"></span><span class="peg"></span><span class="cloth"></span></button>
+        </div>
+      </div>
+      <div class="wrap hero-copy">
+        <h1><img src="assets/logos/fashion.png" alt="Beach Beats Fashion" width="1129" height="238"></h1>
+        <div class="hero-side">
+          <p>Beachwear and everyday clothing in sea colours, made for warm days and loud nights.</p>
+          <p class="hint">Flick anything on the line to try a new print.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section drop" aria-labelledby="drop-title">
+      <div class="wrap">
+        <div>
+          <h2 id="drop-title">The first drop is drying on the line</h2>
+          <p>Swimwear, tees and shorts made to be worn barefoot. Follow us to see the collection the day it lands.</p>
+          <a class="btn" href="https://www.instagram.com/_beach_beats/">Follow on Instagram</a>
+        </div>
+        <div class="tag" aria-label="Collection details">
+          <p class="big">Drop one</p>
+          <dl>
+            <dt>Fit</dt><dd>Relaxed, unisex</dd>
+            <dt>Fabric</dt><dd>Quick-dry swim and soft cotton</dd>
+            <dt>Care</dt><dd>Rinse, then hang in the sun</dd>
+          </dl>
+        </div>
+      </div>
+    </section>
+
+    <section class="section colours" aria-labelledby="col-title">
+      <div class="wrap">
+        <div class="section-head">
+          <h2 id="col-title">Colours of the season</h2>
+          <p>Every colour is taken from a day at the beach.</p>
+        </div>
+        <ul class="swatches">
+          <li><span style="--c:#12A1A0"></span><strong>Teal tide</strong></li>
+          <li><span style="--c:#FFC20E"></span><strong>Midday sun</strong></li>
+          <li><span style="--c:#6FE3D6"></span><strong>Sea glass</strong></li>
+          <li><span style="--c:#141210"></span><strong>Night swim</strong></li>
+          <li><span style="--c:#FFFFFF"></span><strong>Salt</strong></li>
+        </ul>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="wrap">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <img src="assets/logos/fashion-light.png" alt="Beach Beats Fashion">
+          <p>BB Fashion is part of the Beach Beats family.</p>
+        </div>
+        <div><h2>Brands</h2><ul>
+          <li><a href="index.html">Beach Beats</a></li><li><a href="bbrecords.html">BB Records</a></li>
+          <li><a href="bbsmiles.html">BB Smiles</a></li><li><a href="eacheats.html">BB Eats</a></li>
+          <li><a href="rrpure.html">RR Pure Solutions</a></li></ul></div>
+        <div><h2>Follow</h2><ul>
+          <li><a href="https://www.instagram.com/_beach_beats/">Instagram</a></li>
+          <li><a href="https://www.youtube.com/@BEACHBEATSENTERTAINMENTS">YouTube</a></li></ul></div>
+        <div><h2>Talk to us</h2><ul>
+          <li><a href="mailto:beachbeats2025@gmail.com">beachbeats2025@gmail.com</a></li></ul></div>
+      </div>
+      <p class="footer-bottom">© <span data-year>2026</span> Beach Beats. Inspired by the ocean.</p>
+    </div>
+  </footer>
+
+  <script src="assets/js/site.js"></script>
+  <script>
+    (() => {
+      const { sfx } = window.BB;
+      const prints = ["p-teal", "p-stripe", "p-sun", "p-wave", "p-yellow", "p-check"];
+      const notes = [392, 440, 523.25, 587.33, 659.25, 783.99];
+      document.querySelectorAll(".item").forEach((item, i) => {
+        item.addEventListener("click", () => {
+          const cur = prints.findIndex((p) => item.classList.contains(p));
+          item.classList.replace(prints[cur], prints[(cur + 1) % prints.length]);
+          item.classList.remove("swing"); void item.offsetWidth; item.classList.add("swing");
+          sfx.hiss({ dur: .25, gain: .12, filter: "bandpass", freq: 1800, q: .6, attack: .05 }); // flap
+          sfx.pluck(notes[i]);
+        });
+      });
+    })();
+  </script>
+</body>
+</html>

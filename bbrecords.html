@@ -1,0 +1,276 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>BB Records — Beach Beat Records</title>
+  <meta name="description" content="BB Records is the music arm of Beach Beats: original songs, sound for film and ads, mixing and mastering.">
+  <meta name="theme-color" content="#FFC20E">
+  <link rel="icon" href="assets/logos/records-mark.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@800;900&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/base.css">
+  <style>
+    body {
+      --bg: #fff; --text: var(--ink);
+      --accent: var(--ink); --on-accent: var(--sun);
+      --display: "Big Shoulders Display", var(--body);
+      --nav-current: var(--ink);
+      --dot-ring: var(--ink);
+      --focus: var(--ink);
+    }
+    .brand-menu a[aria-current="page"] { color: var(--sun); }
+
+    /* ---------- Hero: the speaker, and the beat pad ---------- */
+    .hero { position: relative; overflow: hidden; background: var(--sun); color: var(--ink); }
+    .ripples { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; }
+    .hero .wrap {
+      position: relative; z-index: 1;
+      min-height: min(100svh, 880px);
+      display: grid; grid-template-columns: 1.15fr 1fr; gap: clamp(32px, 5vw, 72px); align-items: center;
+      padding-block: 120px 72px;
+    }
+    .hero h1 img { width: min(560px, 100%); height: auto; }
+    .hero-copy p { font-size: clamp(1.125rem, 2vw, 1.375rem); font-weight: 600; max-width: 30ch; margin: 26px 0 0; }
+
+    .pad-panel h2 { font-family: var(--display); font-weight: 900; font-size: clamp(2rem, 3.6vw, 2.75rem); line-height: 1; }
+    .pad-panel > p { margin: 8px 0 18px; font-weight: 600; }
+    .pads { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 12px; }
+    .pad {
+      aspect-ratio: 1; border-radius: 16px;
+      background: var(--ink); color: var(--sun);
+      display: flex; flex-direction: column; justify-content: space-between; align-items: flex-start;
+      padding: 12px; text-align: left;
+      box-shadow: inset 0 -6px 0 rgba(255, 255, 255, .08);
+      transition: transform .08s, background .15s, color .15s;
+      --focus: #fff;
+    }
+    .pad strong { font-family: var(--display); font-weight: 800; font-size: clamp(1rem, 1.8vw, 1.375rem); line-height: 1; }
+    .pad kbd { font-family: var(--body); font-weight: 800; font-size: .8125rem; color: rgba(255, 194, 14, .6); }
+    .pad.hit { transform: scale(.93); background: #fff; color: var(--ink); }
+    .groove { margin-top: 18px; }
+    .groove[aria-pressed="true"] { --accent: #fff; --on-accent: var(--ink); }
+    @media (max-width: 860px) {
+      .hero .wrap { grid-template-columns: 1fr; padding-top: 110px; }
+      .pad kbd { display: none; }
+      .pad { padding: 10px; }
+    }
+
+    /* ---------- What we make ---------- */
+    .make { background: var(--ink); color: #fff; }
+    .make .section-head h2, .rel h2, .cta-band h2 { font-family: var(--display); font-weight: 900; font-size: clamp(2.5rem, 6vw, 4.5rem); line-height: .95; }
+    .make ul { list-style: none; display: grid; grid-template-columns: repeat(3, 1fr); gap: 28px; }
+    .make li { border-top: 6px solid var(--sun); padding-top: 18px; }
+    .make h3 { font-family: var(--display); font-weight: 800; font-size: 1.75rem; line-height: 1.05; margin-bottom: 8px; color: var(--sun); }
+    @media (max-width: 760px) { .make ul { grid-template-columns: 1fr; } }
+
+    .release .play { background: var(--sun); }
+    .release .play svg { fill: var(--ink); }
+    .cta-band { text-align: center; background: var(--sun); }
+    .cta-band p { margin: 14px auto 28px; max-width: 44ch; font-weight: 600; }
+    .footer { --deep: var(--ink); }
+  </style>
+</head>
+<body>
+  <a class="skip" href="#main">Skip to content</a>
+
+  <header class="topbar">
+    <div class="wrap">
+      <a class="home-link" href="bbrecords.html"><img class="icon" src="assets/logos/records-icon.png" alt="BB Records"></a>
+      <button class="menu-toggle" aria-expanded="false" aria-controls="brand-menu">Our brands</button>
+      <nav id="brand-menu" class="brand-menu" aria-label="Beach Beats brands">
+        <ul>
+          <li><a href="index.html" style="--dot: var(--home)">Beach Beats</a></li>
+          <li><a href="bbrecords.html" aria-current="page" style="--dot: var(--records)">BB Records</a></li>
+          <li><a href="bbsmiles.html" style="--dot: var(--smiles)">BB Smiles</a></li>
+          <li><a href="bbfashion.html" style="--dot: var(--fashion)">BB Fashion</a></li>
+          <li><a href="eacheats.html" style="--dot: var(--eats)">BB Eats</a></li>
+          <li><a href="rrpure.html" style="--dot: var(--rr)">RR Pure</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main">
+    <section class="hero">
+      <canvas class="ripples" id="ripples" aria-hidden="true"></canvas>
+      <div class="wrap">
+        <div class="hero-copy">
+          <h1><img id="logo" src="assets/logos/records-black.png" alt="BB Records, Beach Beat Records" width="661" height="303"></h1>
+          <p>Music production and sound, made by the sea.</p>
+        </div>
+        <div class="pad-panel" id="beat">
+          <h2>Make a beach beat</h2>
+          <p>Tap the pads, or play them with your keyboard.</p>
+          <div class="pads">
+            <button class="pad" data-sound="kick" data-key="a"><kbd>A</kbd><strong>Kick</strong></button>
+            <button class="pad" data-sound="clap" data-key="s"><kbd>S</kbd><strong>Clap</strong></button>
+            <button class="pad" data-sound="shaker" data-key="d"><kbd>D</kbd><strong>Shaker</strong></button>
+            <button class="pad" data-sound="hat" data-key="f"><kbd>F</kbd><strong>Hat</strong></button>
+            <button class="pad" data-sound="steel1" data-key="j"><kbd>J</kbd><strong>Steel low</strong></button>
+            <button class="pad" data-sound="steel2" data-key="k"><kbd>K</kbd><strong>Steel mid</strong></button>
+            <button class="pad" data-sound="steel3" data-key="l"><kbd>L</kbd><strong>Steel high</strong></button>
+            <button class="pad" data-sound="wave" data-key=";"><kbd>;</kbd><strong>Wave</strong></button>
+          </div>
+          <button class="btn groove" id="groove" aria-pressed="false">Play the groove</button>
+        </div>
+      </div>
+    </section>
+
+    <section class="section make" aria-labelledby="make-title">
+      <div class="wrap">
+        <div class="section-head"><h2 id="make-title">What we make</h2></div>
+        <ul>
+          <li><h3>Songs and singles</h3><p>Original music written, produced and released by BB Records artists.</p></li>
+          <li><h3>Sound for stories</h3><p>Scores, jingles and sound design for films, ads and reels.</p></li>
+          <li><h3>Mixing and mastering</h3><p>Bring your track in rough. Take it home ready for every speaker.</p></li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="section rel" id="releases" aria-labelledby="rel-title">
+      <div class="wrap">
+        <div class="section-head">
+          <h2 id="rel-title">Releases</h2>
+          <p>Everything we've put out, straight from YouTube.</p>
+        </div>
+        <div class="releases">
+          <a class="release" data-yt="JZorUrZcPYQ"><div class="thumb"><img alt="" loading="lazy"><span class="play"><svg viewBox="0 0 24 24"><path d="M5 3v18l15-9z"/></svg></span></div><h3>Watch on YouTube</h3></a>
+          <a class="release" data-yt="_UW1nSXjLqQ"><div class="thumb"><img alt="" loading="lazy"><span class="play"><svg viewBox="0 0 24 24"><path d="M5 3v18l15-9z"/></svg></span></div><h3>Watch on YouTube</h3></a>
+          <a class="release" data-yt="rwa1PJ0e2PQ"><div class="thumb"><img alt="" loading="lazy"><span class="play"><svg viewBox="0 0 24 24"><path d="M5 3v18l15-9z"/></svg></span></div><h3>Watch on YouTube</h3></a>
+          <a class="release" data-yt="FEJdoIMc4xg"><div class="thumb"><img alt="" loading="lazy"><span class="play"><svg viewBox="0 0 24 24"><path d="M5 3v18l15-9z"/></svg></span></div><h3>Watch on YouTube</h3></a>
+          <a class="release" data-yt="g0f0oaTGIfo"><div class="thumb"><img alt="" loading="lazy"><span class="play"><svg viewBox="0 0 24 24"><path d="M5 3v18l15-9z"/></svg></span></div><h3>Watch on YouTube</h3></a>
+          <a class="release" data-yt="LyUiwuta1ws"><div class="thumb"><img alt="" loading="lazy"><span class="play"><svg viewBox="0 0 24 24"><path d="M5 3v18l15-9z"/></svg></span></div><h3>Watch on YouTube</h3></a>
+        </div>
+      </div>
+    </section>
+
+    <section class="section cta-band">
+      <div class="wrap">
+        <h2>Got a song in you?</h2>
+        <p>Tell us what you're working on, from a rough voice note to a finished demo.</p>
+        <a class="btn" href="mailto:beachbeats2025@gmail.com?subject=BB%20Records">Email BB Records</a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="wrap">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <img src="assets/logos/records.png" alt="BB Records">
+          <p>BB Records is part of the Beach Beats family.</p>
+        </div>
+        <div><h2>Brands</h2><ul>
+          <li><a href="index.html">Beach Beats</a></li><li><a href="bbsmiles.html">BB Smiles</a></li>
+          <li><a href="bbfashion.html">BB Fashion</a></li><li><a href="eacheats.html">BB Eats</a></li>
+          <li><a href="rrpure.html">RR Pure Solutions</a></li></ul></div>
+        <div><h2>Follow</h2><ul>
+          <li><a href="https://www.youtube.com/@BEACHBEATSENTERTAINMENTS">YouTube</a></li>
+          <li><a href="https://www.instagram.com/_beach_beats/">Instagram</a></li></ul></div>
+        <div><h2>Talk to us</h2><ul>
+          <li><a href="mailto:beachbeats2025@gmail.com">beachbeats2025@gmail.com</a></li></ul></div>
+      </div>
+      <p class="footer-bottom">© <span data-year>2026</span> Beach Beats. Inspired by the ocean.</p>
+    </div>
+  </footer>
+
+  <script src="assets/js/site.js"></script>
+  <script>
+    (() => {
+      const { sfx, ac, reduce } = window.BB;
+
+      // ---- Ripples: every sound spreads out from the logo's speaker cone like rings on water ----
+      const canvas = document.getElementById("ripples");
+      const g = canvas.getContext("2d");
+      const logo = document.getElementById("logo");
+      let rings = [], running = false, w, h;
+      const size = () => {
+        const dpr = Math.min(devicePixelRatio || 1, 2);
+        w = canvas.clientWidth; h = canvas.clientHeight;
+        canvas.width = w * dpr; canvas.height = h * dpr; g.setTransform(dpr, 0, 0, dpr, 0, 0);
+      };
+      const origin = () => {
+        const a = logo.getBoundingClientRect(), b = canvas.getBoundingClientRect();
+        return [a.left - b.left + a.width * 0.07, a.top - b.top + a.height * 0.47]; // mouth of the cone
+      };
+      const ripple = (strength = 1, delay = 0) => {
+        if (reduce) return;
+        rings.push({ t: -delay * 60, s: strength });
+        if (!running) { running = true; requestAnimationFrame(frame); }
+      };
+      const frame = () => {
+        g.clearRect(0, 0, w, h);
+        const [x, y] = origin();
+        const max = Math.hypot(w, h);
+        rings = rings.filter((r) => r.t < 110);
+        for (const r of rings) {
+          r.t++;
+          if (r.t < 0) continue;
+          const p = r.t / 110;
+          g.beginPath();
+          g.arc(x, y, 30 + p * max * 0.7, 0, Math.PI * 2);
+          g.strokeStyle = `rgba(20,18,16,${(1 - p) * 0.45 * r.s})`;
+          g.lineWidth = 2 + 6 * (1 - p) * r.s;
+          g.stroke();
+        }
+        if (rings.length) requestAnimationFrame(frame); else { running = false; g.clearRect(0, 0, w, h); }
+      };
+      addEventListener("resize", size); size();
+      // one opening moment: three rings as the page arrives
+      (logo.complete ? Promise.resolve() : new Promise((r) => logo.onload = r)).then(() => { ripple(1, 0.2); ripple(.8, 0.7); ripple(.6, 1.2); });
+
+      // ---- Pads ----
+      const sounds = {
+        kick: (t) => sfx.kick(t), clap: (t) => sfx.clap(t), shaker: (t) => sfx.shaker(t), hat: (t) => sfx.hat(t),
+        steel1: (t) => sfx.steel(392, t), steel2: (t) => sfx.steel(523.25, t), steel3: (t) => sfx.steel(659.25, t),
+        wave: (t) => sfx.wave(t),
+      };
+      const weight = { kick: 1, clap: .8, wave: .9, steel1: .7, steel2: .6, steel3: .5, shaker: .35, hat: .3 };
+      const pads = [...document.querySelectorAll(".pad")];
+      const hit = (pad) => {
+        sounds[pad.dataset.sound](0);
+        ripple(weight[pad.dataset.sound]);
+        pad.classList.add("hit");
+        setTimeout(() => pad.classList.remove("hit"), 120);
+      };
+      pads.forEach((p) => p.addEventListener("pointerdown", (e) => { e.preventDefault(); hit(p); }));
+      pads.forEach((p) => p.addEventListener("keydown", (e) => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); hit(p); } }));
+      document.addEventListener("keydown", (e) => {
+        if (e.repeat || e.metaKey || e.ctrlKey || e.altKey || /input|textarea/i.test(e.target.tagName)) return;
+        const pad = pads.find((p) => p.dataset.key === e.key.toLowerCase());
+        if (pad) hit(pad);
+      });
+
+      // ---- Groove: 16 steps at 104 bpm, scheduled ahead so it stays in time ----
+      const STEP = 60 / 104 / 4;
+      const kick = [1,0,0,0, 1,0,0,0, 1,0,0,0, 1,0,0,0];
+      const clap = [0,0,0,1, 0,0,1,0, 0,0,0,1, 0,0,1,0];
+      const shk  = [0,1,1,1, 0,1,1,1, 0,1,1,1, 0,1,1,1];
+      const mel  = [523, 0, 0, 659, 0, 0, 784, 0, 587, 0, 0, 698, 0, 0, 880, 0];
+      let timer, next, step;
+      const groove = document.getElementById("groove");
+      const tick = () => {
+        const c = ac();
+        while (next < c.currentTime + 0.12) {
+          const t = next - c.currentTime;
+          if (kick[step]) { sfx.kick(t); setTimeout(() => ripple(.9), t * 1000); }
+          if (clap[step]) sfx.clap(t);
+          if (shk[step]) sfx.shaker(t);
+          if (mel[step]) sfx.steel(mel[step], t);
+          if (step === 0 && Math.random() < .5) sfx.wave(t);
+          step = (step + 1) % 16; next += STEP;
+        }
+      };
+      groove.addEventListener("click", () => {
+        const on = groove.getAttribute("aria-pressed") !== "true";
+        groove.setAttribute("aria-pressed", String(on));
+        groove.textContent = on ? "Stop the groove" : "Play the groove";
+        if (on) { next = ac().currentTime + 0.05; step = 0; timer = setInterval(tick, 25); }
+        else clearInterval(timer);
+      });
+    })();
+  </script>
+</body>
+</html>
